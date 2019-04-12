@@ -1,0 +1,28 @@
+body{
+        background-image: url(logo2.png), url(background.png);
+        background-repeat: no-repeat, no-repeat;
+        background-position: center,left;
+        color: black;
+    }
+
+#password
+{
+    border-color: red;
+  height : 20px;
+    width: 200px;
+
+}
+#username
+{
+    border-color: blue;
+    text-align: center;
+     height : 20px;
+    width: 200px;
+}
+#submit
+{
+    background-color: grey;
+  border: none;
+  color: white;
+}
+
