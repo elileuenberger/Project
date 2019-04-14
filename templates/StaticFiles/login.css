@@ -52,9 +52,3 @@ form{
     99%{    color:transparent;  }
     100%{   color: #000;    }
 }
-
-#message
-{
-    font-weight: bolder;
-    color: red;
-}
