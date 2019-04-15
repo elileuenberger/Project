@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from django.views import View
 from Account.models import Account
-from ViewCourseAssign.models import viewCourseAssign
+from ViewCourseAssign.models import viewTaAssignments, viewAllTaAssignments
 # Create your views here.
 
 
-class viewAssign(View):
+class viewTaAssign(View):
 
     def get(self, request):
         taList = Account.objects.filter(title=1)
@@ -14,11 +14,13 @@ class viewAssign(View):
     def post(self, request):
         taList = Account.objects.filter(title=1)
         account = str(request.POST["taAccount"])
+        allAssignments = []
+        assignment = ""
+        if account == "all":
+            allAssignments = viewAllTaAssignments()
+        else:
+            command = ["", account]
 
-        command = ["", account]
+            assignment = viewTaAssignments(command)
 
-        vca = viewCourseAssign()
-
-        message = vca.viewCourseAssign(command)
-
-        return render(request, 'viewAssignments.html', {"assignments": message, "taList": taList})
+        return render(request, 'viewAssignments.html', {"assignments": assignment, "taList": taList, "allassignments": allAssignments})

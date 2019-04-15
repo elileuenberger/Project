@@ -5,15 +5,20 @@
     <title>Title</title>
 </head>
 <body>
-<form method="post" action="/viewassignments/">
+<form method="post" action="/viewtaassignments/">
     {%csrf_token%}
-<select name = "taAccount">
+<select name = "taAccount" onchange="this.form.submit()">
+        <option>--</option>
+        <option value="all">All</option>
     {%for i   in taList %}
         <option value={{ i }}>{{ i }}</option>
     {% endfor %}
 </select>
-<input type="submit"/><br>
+<noscript><input type = "submit" value="Submit"></noscript>
 </form>
 {{ assignments }}
+{% for i in allassignments %}
+    {{ i }}<br>
+{% endfor %}
 </body>
 </html>
