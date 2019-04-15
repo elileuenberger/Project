@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" action="/viewassignments/">
+    {%csrf_token%}
+<select name = "taAccount">
+    {%for i   in taList %}
+        <option value={{ i }}>{{ i }}</option>
+    {% endfor %}
+</select>
+<input type="submit"/><br>
+</form>
+{{ assignments }}
+</body>
+</html>
