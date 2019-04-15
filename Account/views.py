@@ -48,7 +48,6 @@ class createAccountView(View):
         command = [userName, title, email, firstName, lastName]
 
         try:
-
             message = Account.createAccountModels(self.CA, command)
             return render(request, 'createAccount.html', {"message": message})
         except Exception as e:
