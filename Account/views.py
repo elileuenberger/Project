@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from CurrentUserHelper import CurrentUserHelper
+from Account.models import Account
 # Create your views here.
 
 
@@ -30,32 +31,26 @@ class taPage(View):
         Account = CUH.getCurrentUser()
         return render(request, 'Accounts/TaHome.html', {"Account": Account})
 
-class createAccount(View):
+class createAccountView(View):
 
     def get(self, request):
-        return render(request, 'createAccount.html')
+        accountList = list(Account.objects.all())
+        return render(request, 'createAccount.html', {"accounts": accountList})
 
     def post(self, request):
-
+        self.CA = Account()
         userName = str(request.POST["username"])
         firstName = str(request.POST["firstname"])
         lastName = str(request.POST["lastname"])
-        password = str(request.POST["password"])
         email = str(request.POST["email"])
         title = str(request.POST["title"])
-        address = str(request.POST["address"])
-        city = str(request.POST["city"])
-        state = str(request.POST["state"])
-        zipCode = str(request.POST["zipcode"])
-        officeNumber = str(request.POST["officenumber"])
-        officePhone = str(request.POST["officephone"])
-        officeDays = str(request.POST["officeday"])
-        officeHoursStart = str(request.POST["officehourstart"])
-        officeHoursEnd = str(request.POST["officehoursend"])
-        currentUser = str(request.POST["dfshjkhljfds"])
+
+        command = [userName, title, email, firstName, lastName]
 
         try:
-            message = command = ["", userName, title, email, firstName, lastName, password, address, city, state, zipCode, officeNumber, officePhone, officeDays, officeHoursStart, officeHoursEnd]
-            return render(request, 'loginscreen.html', {"message": message})
+
+            message = Account.createAccountModels(self.CA, command)
+            return render(request, 'createAccount.html', {"message": message})
         except Exception as e:
-            return render(request, 'loginscreen.html', {"message": str(e)})
+            return render(request, 'createAccount.html', {"message": str(e)})
+
