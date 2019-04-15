@@ -30,7 +30,7 @@ urlpatterns = [
     path("supervisor/", account.supervisorPage.as_view()),
     path("instructor/", account.instructorPage.as_view()),
     path("ta/", account.taPage.as_view()),
-    path("createaccount/", account.createAccount.as_view())
+    path("createaccount/", account.createAccountView.as_view())
 ]
 
 urlpatterns += staticfiles_urlpatterns()
