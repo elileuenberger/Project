@@ -17,8 +17,8 @@ class Test_DeleteAccount(TestCase):
 
     def test_DeleteAccount_successfully_created(self):
         self.assertEqual(self.DA.DeleteAccount(["deleteaccount", "cheng41", "2"]),
-                         "Instructor was successfully assigned to class")
+                         "Account successfully deleted")
         self.assertEqual(self.DA.DeleteAccount(["deleteaccount", "suzuki15", "2"]),
-                         "Instructor was successfully assigned to class")
+                         "Account successfully deleted")
         self.assertEqual(self.DA.DeleteAccount(["deleteaccount", "spykim2003", "1"]),
-                         "Instructor was successfully assigned to class")
+                         "Account successfully deleted")
