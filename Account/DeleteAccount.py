@@ -1,4 +1,5 @@
 from Account.models import DeleteAccount
+from Account.models import Account
 
 
 class DeleteAccount:
@@ -19,3 +20,8 @@ class DeleteAccount:
         if len(command) != 2:
             return "There are arguments missing, please enter your command in the following format: "
             "deleteaccount userName title"
+
+        account = CreateAccount.createAccount()
+        account.remove()
+        account.save()
+        return "Account successfully deleted"
