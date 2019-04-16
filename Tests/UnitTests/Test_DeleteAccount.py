@@ -26,5 +26,5 @@ class Test_DeleteAccount(TestCase):
     def test_DeleteAccount_no_username_found(self):
         self.assertEqual(self.AI.assignInst(["deleteaccount", "spykim2003", "2"]),
                          "Invalid user name")
-        self.assertEqual(self.AI.assignInst(["deleteaccount", "eonshik", "1"]),
+        self.assertEqual(self.AI.assignInst(["deleteaccount", "eonshik7", "1"]),
                          "Invalid user name")
