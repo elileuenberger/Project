@@ -1,4 +1,3 @@
-from Account.models import DeleteAccount
 from Account.models import Account
 
 
@@ -15,19 +14,23 @@ class DeleteAccount:
     """
 
     def deleteAccount(self, command):
+        username = command[0]
+        a = Account.objects.get(username)
+        #a.userName = command[1]
+        #a.title = command[2]
+        a.remove()
+        #a.save()
+        return "Account successfully deleted"
+
 
         # Check that the command has the correct number of arguments
-        if len(command) != 2:
-            return "There are arguments missing, please enter your command in the following format: "
-            "deleteaccount userName title"
+        #if len(command) != 2:
+         #   return "There are arguments missing, please enter your command in the following format: " \
+                   #"deleteaccount userName title"
 
         # Check if the user name is valid
-        if not Account.objects.filter(userName=command[1]).exists():
-            return "Invalid user name"
-        account = CreateAccount.createAccount()
-        a = Account.objects.create(account)
-        a.userName = command[1]
-        a.title = command[2]
-        a.remove()
-        a.save()
-        return "Account successfully deleted"
+        #if not Account.objects.filter(userName=command[1]).exists():
+         #   return "Invalid user name"
+        #account = CreateAccount.createAccount()
+        #a = Account.objects.create(account)
+
