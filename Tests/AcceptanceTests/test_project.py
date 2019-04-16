@@ -523,13 +523,13 @@ class TestProject(TestCase):
         LoginHelper.login(self.LH, ["login", "kirkj22", "678543"])
         self.assertEqual(self.UI.command("deleteAccount TA"),
                          "There are arguments missing, please enter your command in the following format: "
-                         "deleteaccount userName")
+                         "deleteaccount userName title")
 
     def test_command_deleteAccount_no_argument(self):
         LoginHelper.login(self.LH, ["login", "kirkj22", "678543"])
         self.assertEqual(self.UI.command("deleteAccount"),
                          "There are arguments missing, please enter your command in the following format: "
-                         "deleteaccount userName")
+                         "deleteaccount userName title")
 
     def test_command_deleteAccount_doesNotExist(self):
         LoginHelper.login(self.LH, ["login", "kirkj22", "678543"])
