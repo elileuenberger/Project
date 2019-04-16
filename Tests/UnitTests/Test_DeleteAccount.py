@@ -7,4 +7,18 @@ from Account.models import Account
 
 class Test_DeleteAccount(TestCase):
     def setUp(self):
-        pass
+        self.DA = DeleteAccount()
+        self.account1 = Account.objects.create(userName="cheng41", title="2")
+        self.account2 = Account.objects.create(userName="suzuki15", title="2")
+        self.account3 = Account.objects.create(userName="spykim2003", title="1")
+        Account.objects1.remove()
+        Account.objects2.remove()
+        Account.objects3.remove()
+
+    def test_DeleteAccount_successfully_created(self):
+        self.assertEqual(self.DA.DeleteAccount(["deleteaccount", "cheng41", "2"]),
+                         "Instructor was successfully assigned to class")
+        self.assertEqual(self.DA.DeleteAccount(["deleteaccount", "suzuki15", "2"]),
+                         "Instructor was successfully assigned to class")
+        self.assertEqual(self.DA.DeleteAccount(["deleteaccount", "spykim2003", "1"]),
+                         "Instructor was successfully assigned to class")
