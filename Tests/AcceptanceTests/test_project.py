@@ -1,6 +1,7 @@
 from main.models import UI
 from django.test import TestCase
 from Account.models import Account
+from Account.models import DeleteAccount
 from Lab.models import Lab
 from Course.models import Course
 from LogIn import LoginHelper
@@ -83,6 +84,7 @@ class TestProject(TestCase):
         self.datastructures = Course.objects.get(name="DataStructures")
         self.tamanAccount = Account.objects.get(userName="taman")
 
+        # set up for DeleteAccount testing
 
     """
         login command
@@ -479,16 +481,6 @@ class TestProject(TestCase):
         self.assertEqual(self.UI.command("send accountNames -s"),
                          "There was an error, notification not sent")
 
-    # def test_command_send_no_argument(self):
-    #    self.assertEqual(self.UI.command("send -s"),
-    #                     "")
-
-    # def test_command_send_no_argument_2(self):
-    #        self.assertEqual(self.UI.command("send -a"),
-    #                         "Please type the user names  that you want to sent")
-
-    # def test_command_send_no_argument_3(self):
-    #    self.assertEqual(self.UI.command("sendNotification"), "Please type the username that you want to sent")
 
     """
         sendTA command
@@ -517,16 +509,31 @@ class TestProject(TestCase):
            message is displayed.          
     """
 
+    def test_command_deleteAccount_permission_denied(self):
+        LoginHelper.login(self.LH, ["login", "janewayk123", "123456"])
+        self.assertEqual(self.UI.command("deleteAccount neelix45 TA"),
+                         "You do not have the credentials to delete an account. Permission denied")
+        LoginHelper.logout(self.LH)
+
     def test_command_deleteAccount(self):
-        self.assertEqual(self.UI.command("deleteAccount userName"), "Account successfully deleted")
+        LoginHelper.login(self.LH, ["login", "kirkj22", "678543"])
+        self.assertEqual(self.UI.command("deleteaccount neelix45 TA"), "Account successfully deleted")
 
     def test_command_deleteAccount_no_name(self):
+        LoginHelper.login(self.LH, ["login", "kirkj22", "678543"])
+        self.assertEqual(self.UI.command("deleteAccount TA"),
+                         "There are arguments missing, please enter your command in the following format: "
+                         "deleteaccount userName")
+
+    def test_command_deleteAccount_no_argument(self):
+        LoginHelper.login(self.LH, ["login", "kirkj22", "678543"])
         self.assertEqual(self.UI.command("deleteAccount"),
                          "There are arguments missing, please enter your command in the following format: "
-                         "deleteAccount userName")
+                         "deleteaccount userName")
 
     def test_command_deleteAccount_doesNotExist(self):
-        self.assertEqual(self.UI.command("deleteAccount userName"), "Error, Account does not exist")
+        LoginHelper.login(self.LH, ["login", "kirkj22", "678543"])
+        self.assertEqual(self.UI.command("deleteaccount neelix45 TA"), "Error, Account does not exist")
 
     """
         When the assignInstructorCourse command is entered it takes 2 arguments: 
