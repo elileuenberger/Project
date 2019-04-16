@@ -15,10 +15,10 @@ class DeleteAccount:
 
     def deleteAccount(self, command):
         username = command[0]
-        a = Account.objects.get(username)
+        Account.objects.filter(userName=username).delete()
         #a.userName = command[1]
         #a.title = command[2]
-        a.remove()
+        #a.remove()
         #a.save()
         return "Account successfully deleted"
 
