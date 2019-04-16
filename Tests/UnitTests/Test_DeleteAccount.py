@@ -22,3 +22,9 @@ class Test_DeleteAccount(TestCase):
                          "Account successfully deleted")
         self.assertEqual(self.DA.DeleteAccount(["deleteaccount", "spykim2003", "1"]),
                          "Account successfully deleted")
+
+    def test_DeleteAccount_no_username_found(self):
+        self.assertEqual(self.AI.assignInst(["deleteaccount", "spykim2003", "2"]),
+                         "Invalid user name")
+        self.assertEqual(self.AI.assignInst(["deleteaccount", "eonshik", "1"]),
+                         "Invalid user name")
