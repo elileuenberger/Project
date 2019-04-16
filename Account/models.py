@@ -59,3 +59,11 @@ class Account(models.Model):
             A.save()
 
             return "Account successfully created.  Temporary password is: " + A.userName + "456"
+
+
+class DeleteAccount(models.Model):
+    userName = models.CharField(max_length=20, default=" ")
+    title = models.IntegerField(default=0)
+
+    def __str__(self):
+        return None

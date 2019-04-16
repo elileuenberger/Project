@@ -1,12 +1,13 @@
 from Account.models import Account
 from LogIn import LoginHelper
 from Account.CreateAccount import CreateAccount
+from Account.DeleteAccount import DeleteAccount
 from Lab.CreateLab import CreateLab
 from Course.CreateCourse import CreateCourse
 from CurrentUserHelper import CurrentUserHelper
 from TaLab.AssignTaLab import AssignTaLab
 from TACourse.AssignTACourse import AssignTACourse
-from ViewCourseAssign.models import viewCourseAssign
+from ViewCourseAssign.models import viewTaAssignments
 from InstructorCourse.assignInst import assignInst
 # Create your models here.
 
@@ -88,9 +89,15 @@ class UI:
             if CUH.getCurrentUserTitle() < 1:
                 return "You must log in to View Course Assignment"
 
-            VCA = viewCourseAssign()
+            return viewTaAssignments(command)
 
-            return VCA.viewCourseAssign(command)
+        elif command[0].lower() == "deleteaccount":
+            CUH = CurrentUserHelper()
+            if CUH.getCurrentUserTitle() < 3:
+                return "You do not have the credentials to delete an account. Permission denied"
+
+            DA = DeleteAccount()
+            return DA.createAccount(command)
 
         else:
             return command[0] + " is an unsupported command"
