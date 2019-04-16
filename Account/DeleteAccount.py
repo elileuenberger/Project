@@ -14,4 +14,8 @@ class DeleteAccount:
     """
 
     def deleteAccount(self, command):
-        pass
+
+        # Check that the command has the correct number of arguments
+        if len(command) != 2:
+            return "There are arguments missing, please enter your command in the following format: "
+            "deleteaccount userName title"
