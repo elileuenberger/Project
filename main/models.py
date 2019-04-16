@@ -1,6 +1,7 @@
 from Account.models import Account
 from LogIn import LoginHelper
 from Account.CreateAccount import CreateAccount
+from Account.DeleteAccount import DeleteAccount
 from Lab.CreateLab import CreateLab
 from Course.CreateCourse import CreateCourse
 from CurrentUserHelper import CurrentUserHelper
@@ -89,6 +90,14 @@ class UI:
                 return "You must log in to View Course Assignment"
 
             return viewTaAssignments(command)
+
+        elif command[0].lower() == "deleteaccount":
+            CUH = CurrentUserHelper()
+            if CUH.getCurrentUserTitle() < 3:
+                return "You do not have the credentials to delete an account. Permission denied"
+
+            DA = DeleteAccount()
+            return DA.createAccount(command)
 
         else:
             return command[0] + " is an unsupported command"
