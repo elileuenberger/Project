@@ -66,4 +66,4 @@ class DeleteAccount(models.Model):
     title = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.userName
+        return None

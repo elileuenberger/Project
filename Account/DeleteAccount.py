@@ -24,8 +24,8 @@ class DeleteAccount:
         # Check if the user name is valid
         if not Account.objects.filter(userName=command[1]).exists():
             return "Invalid user name"
-
-        a = Account()
+        account = CreateAccount.createAccount()
+        a = Account.objects.create(account)
         a.userName = command[1]
         a.title = command[2]
         a.remove()
