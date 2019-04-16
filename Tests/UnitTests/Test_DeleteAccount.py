@@ -10,7 +10,7 @@ class Test_DeleteAccount(TestCase):
         self.DA = DeleteAccount()
         self.account1 = Account.objects.create(userName="cheng41", title="2")
         self.account2 = Account.objects.create(userName="suzuki15", title="2")
-        self.account3 = Account.objects.create(userName="spykim2003", title="1")
+        self.account3 = Account.objects.create(userName="henry53", title="1")
         Account.objects1.remove()
         Account.objects2.remove()
         Account.objects3.remove()
