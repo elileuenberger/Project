@@ -21,6 +21,10 @@ class DeleteAccount:
             return "There are arguments missing, please enter your command in the following format: "
             "deleteaccount userName title"
 
+        # Check if the user name is valid
+        if not Account.objects.filter(userName=command[1]).exists():
+            return "Invalid user name"
+
         account = CreateAccount.createAccount()
         account.remove()
         account.save()
