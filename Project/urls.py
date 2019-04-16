@@ -32,7 +32,8 @@ urlpatterns = [
     path("instructor/", account.instructorPage.as_view()),
     path("ta/", account.taPage.as_view()),
     path("createaccount/", account.createAccountView.as_view()),
-    path("viewtaassignments/", vca.viewTaAssign.as_view())
+    path("viewtaassignments/", vca.viewTaAssign.as_view()),
+    path("deleteaccount/", account.deleteAccountView.as_view())
 ]
 
 urlpatterns += staticfiles_urlpatterns()
