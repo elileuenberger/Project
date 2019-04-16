@@ -53,3 +53,10 @@ class createAccountView(View):
         except Exception as e:
             return render(request, 'createAccount.html', {"message": str(e)})
 
+class deleteAccountView(View):
+
+    def get(self, request):
+        pass
+
+    def post(self, request):
+        pass
